@@ -16,7 +16,7 @@
       <span @click="nextSlide" class="lightgrey next">&#9658;</span>
     </div>
     <ul>
-      <h2>Click on the image</h2>
+      <h2 @click="onDel(post)">Click on the link to delete</h2>
       <li v-for="(item, index) in clickedItems" :key="index" class="fade-in">
         <p>{{ item.url }}</p>
       </li>
