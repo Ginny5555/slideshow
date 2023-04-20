@@ -6,7 +6,10 @@
         <ul class="slider" :style="styleObject" v-if="posts && posts.length">
           <li class="green slide" v-for="post of posts" :key="post">
             <div>
-              <div @click.exact.once="onSelect(post)" @click.ctrl="onDel(post)">
+              <div
+                @click.exact.once="onSelect(post)"
+                @click.exact.ctrl="onDel(post)"
+              >
                 <img :src="post.download_url" alt />
               </div>
             </div>
