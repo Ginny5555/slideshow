@@ -4,17 +4,11 @@
       <span @click="prevSlide" class="lightgrey prev">&#9668;</span>
       <div class="slider-container">
         <ul class="slider" :style="styleObject" v-if="posts && posts.length">
-          <li
-            class="green slide"
-            v-for="post of posts"
-            :key="post"
-            @click="() => onSelect(post)"
-          >
-            <div
-              :class="{ active: showMobileMenu }"
-              @click="showMobileMenu = !showMobileMenu"
-            >
-              <img :src="post.download_url" alt />
+          <li class="green slide" v-for="post of posts" :key="post">
+            <div>
+              <div @click.exact.once="onSelect(post)" @click.ctrl="onDel(post)">
+                <img :src="post.download_url" alt />
+              </div>
             </div>
           </li>
         </ul>
@@ -41,7 +35,6 @@ export default {
       active: 0,
       activeSlide: 1,
       clickedItems: [],
-      showMobileMenu: false,
     };
   },
   created() {
@@ -76,6 +69,9 @@ export default {
       this.clickedItems.push(post);
       JSON.stringify(this.clickedItems);
       console.log(this.clickedItems.toString());
+    },
+    onDel(post) {
+      this.clickedItems.pop(post);
     },
   },
 };
@@ -198,5 +194,8 @@ p {
 }
 ul {
   padding: 0;
+}
+.visible {
+  display: none;
 }
 </style>
